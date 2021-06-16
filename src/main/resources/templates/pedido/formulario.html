@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title>Insert title here</title>
+		<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-+0n0xVW2eSR5OomGNYDnhzAbDsOXxcvSN1TPprVMTNDbiYZCxYbOOl7+AMvyTG2x" crossorigin="anonymous">
+	</head>
+	<body>
+		<div class="container">
+			<div class="h-100 p-5 text-white bg-dark rounded-3">
+				<h1>Novo Pedido</h1>
+			</div>
+			
+			<form action="/pedido/novo" method="POST">
+				<div>
+					<label for="nomeProduto">Produto</label>
+					<input name="nomeProduto" placeholder="Nome do Produto"/>
+					<small>Informe o nome do produto</small>
+				</div>
+				
+				<div>
+					<label for="urlProduto">URL</label>
+					<input name="urlProduto" placeholder="URL do Produto"/>
+					<small>Informe a URL do produto</small>
+				</div>
+				
+				<div>
+					<label for="urlImagem">Imagem</label>
+					<input name="urlImagem" placeholder="URL da Imagem"/>
+					<small>Informe a URL da imagem do produto</small>
+				</div>
+				
+				<div>
+					<label for="descricao">Descrição</label>
+					<textarea name="descricao" placeholder="Adicione uma descrição"></textarea>
+				</div>
+				<button type="submit">Cadastrar</button>
+			</form>
+		</div>
+	</body>
+</html>
