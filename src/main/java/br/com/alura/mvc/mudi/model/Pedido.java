@@ -8,22 +8,17 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 
-import lombok.AccessLevel;
-import lombok.EqualsAndHashCode;
-import lombok.Getter;
+import br.com.alura.mvc.mudi.dto.PedidoDTO;
+import lombok.Data;
 import lombok.NoArgsConstructor;
-import lombok.Setter;
 
-@Entity
-@Getter
-@Setter
-@EqualsAndHashCode
+@Data
 @NoArgsConstructor
+@Entity
 public class Pedido {
 	
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO)
-	@Setter(value = AccessLevel.PRIVATE)
 	private Long id;
 	private String nomeProduto;
 	private BigDecimal valorNegociado;
@@ -31,5 +26,16 @@ public class Pedido {
 	private String urlProduto;
 	private String urlImagem;
 	private String descricao;
+
+	public Pedido(PedidoDTO pedidoDTO) {
+		this.nomeProduto = pedidoDTO.getNomeProduto();
+		this.urlProduto = pedidoDTO.getUrlProduto();
+		this.urlImagem = pedidoDTO.getUrlImagem();
+		this.descricao = pedidoDTO.getDescricao();
+	}
+	
+	public static Pedido toModel(PedidoDTO pedidoDTO) {
+		return new Pedido(pedidoDTO);
+	}
 
 }
