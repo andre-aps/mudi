@@ -12,28 +12,37 @@
 			</div>
 			
 			<div class="card mt-3">
-				<form class="card-body" action="/pedido/novo" method="POST">
+				<form th:object="${pedidoDTO}" class="card-body" action="/pedido/novo" method="POST">
 					<div class="mb-3">
 						<label for="nomeProduto">Produto</label>
-						<input class="form-control" name="nomeProduto" placeholder="Nome do Produto"/>
+						<input th:field="*{nomeProduto}" th:errorclass="is-invalid" class="form-control" placeholder="Nome do Produto"/>
 						<small>Informe o nome do produto</small>
+						<div th:errors="*{nomeProduto}" class="invalid-feedback">
+							Erros no campo nome do produto
+						</div>
 					</div>
 					
 					<div class="mb-3">
 						<label for="urlProduto">URL</label>
-						<input class="form-control" name="urlProduto" placeholder="URL do Produto"/>
+						<input th:field="*{urlProduto}" th:errorclass="is-invalid" class="form-control" placeholder="URL do Produto"/>
 						<small>Informe a URL do produto</small>
+						<div th:errors="*{urlProduto}" class="invalid-feedback">
+							Erros no campo URL do Produto
+						</div>
 					</div>
 					
 					<div class="mb-3">
 						<label for="urlImagem">Imagem</label>
-						<input class="form-control" name="urlImagem" placeholder="URL da Imagem"/>
+						<input th:field="*{urlImagem}" th:errorclass="is-invalid" class="form-control" placeholder="URL da Imagem"/>
 						<small>Informe a URL da imagem do produto</small>
+						<div th:errors="*{urlImagem}" class="invalid-feedback">
+							Erros no campo URL da Imagem
+						</div>
 					</div>
 					
 					<div class="mb-3">
 						<label for="descricao">Descrição</label>
-						<textarea class="form-control" name="descricao" placeholder="Adicione uma descrição"></textarea>
+						<textarea th:field="*{descricao}" class="form-control" placeholder="Adicione uma descrição"></textarea>
 					</div>
 					<button class="btn btn-primary" type="submit">Cadastrar</button>
 				</form>
