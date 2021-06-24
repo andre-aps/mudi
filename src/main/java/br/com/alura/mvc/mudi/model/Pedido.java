@@ -4,6 +4,8 @@ import java.math.BigDecimal;
 import java.time.LocalDate;
 
 import javax.persistence.Entity;
+import javax.persistence.EnumType;
+import javax.persistence.Enumerated;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
@@ -26,12 +28,15 @@ public class Pedido {
 	private String urlProduto;
 	private String urlImagem;
 	private String descricao;
+	@Enumerated(EnumType.STRING)
+	private StatusPedido status;
 
 	public Pedido(PedidoDTO pedidoDTO) {
 		this.nomeProduto = pedidoDTO.getNomeProduto();
 		this.urlProduto = pedidoDTO.getUrlProduto();
 		this.urlImagem = pedidoDTO.getUrlImagem();
 		this.descricao = pedidoDTO.getDescricao();
+		this.status = StatusPedido.AGUARDANDO;
 	}
 	
 	public static Pedido toModel(PedidoDTO pedidoDTO) {
