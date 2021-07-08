@@ -6,11 +6,14 @@ import java.time.LocalDate;
 import javax.persistence.Entity;
 import javax.persistence.EnumType;
 import javax.persistence.Enumerated;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.ManyToOne;
 
 import br.com.alura.mvc.mudi.dto.PedidoDTO;
+import br.com.alura.mvc.mudi.enums.StatusPedido;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
@@ -30,6 +33,8 @@ public class Pedido {
 	private String descricao;
 	@Enumerated(EnumType.STRING)
 	private StatusPedido status;
+	@ManyToOne(fetch = FetchType.LAZY)
+	private Usuario usuario;
 
 	public Pedido(PedidoDTO pedidoDTO) {
 		this.nomeProduto = pedidoDTO.getNomeProduto();
