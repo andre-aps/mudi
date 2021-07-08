@@ -1,4 +1,4 @@
-package br.com.alura.mvc.mudi.model;
+package br.com.alura.mvc.mudi.enums;
 
 public enum StatusPedido {
 	AGUARDANDO,
