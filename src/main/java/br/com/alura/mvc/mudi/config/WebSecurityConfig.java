@@ -1,18 +1,21 @@
 package br.com.alura.mvc.mudi.config;
 
-import org.springframework.context.annotation.Bean;
+import javax.sql.DataSource;
+
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.security.config.annotation.authentication.builders.AuthenticationManagerBuilder;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
 import org.springframework.security.config.annotation.web.configuration.WebSecurityConfigurerAdapter;
-import org.springframework.security.core.userdetails.User;
-import org.springframework.security.core.userdetails.UserDetails;
-import org.springframework.security.core.userdetails.UserDetailsService;
-import org.springframework.security.provisioning.InMemoryUserDetailsManager;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 
 @Configuration
 @EnableWebSecurity
 public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
+	
+	@Autowired
+	private DataSource dataSource;
 	
 	//Configurações de autorização
 	@Override
@@ -22,6 +25,14 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
 			.and().formLogin(form -> form.loginPage("/login").permitAll().defaultSuccessUrl("/home", true))
 			.logout(logout -> logout.logoutUrl("/logout"))
 			.csrf().disable();
+	}
+	
+	//Configurações de autenticação
+	@Override
+	protected void configure(AuthenticationManagerBuilder auth) throws Exception {
+		auth.jdbcAuthentication()
+			.dataSource(dataSource)
+			.passwordEncoder(new BCryptPasswordEncoder());
 	}
 	
 }
