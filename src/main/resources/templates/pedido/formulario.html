@@ -3,10 +3,7 @@
 	<head th:replace="~{base::head}"></head>
 	
 	<body>
-		<div class="logo-container mb-3 p-3 d-flex justify-content-between">
-			<span class="logo">mudi</span>
-			<span class="login-name">login</span>
-		</div>
+		<div th:replace="~{base::logo}" class="logo-container mb-3 p-3 d-flex justify-content-between"></div>
 		
 		<div class="container">
 			<div th:replace="~{base::titulo('Novo Pedido')}"></div>
