@@ -10,9 +10,10 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.servlet.ModelAndView;
 
+import br.com.alura.mvc.mudi.enums.StatusPedido;
 import br.com.alura.mvc.mudi.model.Pedido;
-import br.com.alura.mvc.mudi.model.StatusPedido;
 import br.com.alura.mvc.mudi.repository.PedidoRepository;
+import br.com.alura.mvc.mudi.util.UsuarioUtil;
 
 @Controller
 @RequestMapping("/home")
@@ -23,7 +24,7 @@ public class HomeController {
 	
 	@GetMapping
 	public ModelAndView home() {
-		List<Pedido> pedidos = pedidoRepository.findAll();
+		List<Pedido> pedidos = pedidoRepository.findAllByUsuario(UsuarioUtil.getNomeUsuario());
 		
 		return new ModelAndView("home")
 				.addObject("pedidos", pedidos);
