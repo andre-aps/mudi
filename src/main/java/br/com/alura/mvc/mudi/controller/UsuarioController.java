@@ -24,7 +24,7 @@ public class UsuarioController {
 	
 	@GetMapping("/pedidos")
 	public ModelAndView home() {
-		List<Pedido> pedidos = pedidoRepository.findAllByUsuario(UsuarioUtil.getNomeUsuario());
+		List<Pedido> pedidos = pedidoRepository.findByUsuario_usernameIs(UsuarioUtil.getNomeUsuario());
 		
 		return new ModelAndView("/usuario/home")
 				.addObject("pedidos", pedidos);
@@ -32,7 +32,7 @@ public class UsuarioController {
 	
 	@GetMapping("/pedidos/{status}")
 	public ModelAndView byStatus(@PathVariable("status") String status) {
-		List<Pedido> pedidos = pedidoRepository.findByStatusUsuario(
+		List<Pedido> pedidos = pedidoRepository.findByStatusAndUsuario_username(
 				StatusPedido.valueOf(status.toUpperCase()), UsuarioUtil.getNomeUsuario());
 		
 		return new ModelAndView("/usuario/home")
