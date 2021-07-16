@@ -23,7 +23,7 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
 		http.authorizeRequests()
 			.anyRequest().authenticated()
 			.and().formLogin(form -> form.loginPage("/login").permitAll().defaultSuccessUrl("/usuario/pedidos", true))
-			.logout(logout -> logout.logoutUrl("/logout"))
+			.logout(logout -> logout.logoutUrl("/logout").logoutSuccessUrl("/home").permitAll())
 			.csrf().disable();
 	}
 	

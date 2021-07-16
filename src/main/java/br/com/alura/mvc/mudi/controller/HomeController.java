@@ -23,19 +23,10 @@ public class HomeController {
 	
 	@GetMapping
 	public ModelAndView home() {
-		List<Pedido> pedidos = pedidoRepository.findAll();
+		List<Pedido> pedidos = pedidoRepository.findByStatus(StatusPedido.ENTREGUE);
 		
 		return new ModelAndView("home")
 				.addObject("pedidos", pedidos);
-	}
-	
-	@GetMapping("/{status}")
-	public ModelAndView byStatus(@PathVariable("status") String status) {
-		List<Pedido> pedidos = pedidoRepository.findByStatus(StatusPedido.valueOf(status.toUpperCase()));
-		
-		return new ModelAndView("home")
-				.addObject("pedidos", pedidos)
-				.addObject(status);
 	}
 	
 	@ExceptionHandler(IllegalArgumentException.class)

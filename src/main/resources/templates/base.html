@@ -8,24 +8,44 @@
 			background-color: #44bcff;
 			color: #FFF;
 		}
-		.logo {
+		.logo-name {
 			font-family: 'Handlee', cursive;
 			font-size: 2.5rem;
 			text-decoration: none;
 		}
-		.login-name {
+		.login-logout-name {
 			margin-top: 1rem;
+			height: 2rem;
+		}
+		.nav-bar {
+			margin-left: 1rem;
 		}
 	</style>
 </head>
 
-<div th:fragment="logo" class="logo-container mb-3 p-3 d-flex justify-content-between">
-	<a th:href="@{/home}" class="link-light logo"> <span>mudi</span> </a>
-	<form sec:authorize="isAuthenticated()" th:action="@{/logout}" method="post">
-		<input class="btn btn-outline-light btn-sm mt-3" value="Logout" type="submit"/>
-	</form>
+<div th:fragment="logo">
+	<div class="row">
+		<form class="logo-container mb-3 p-4 d-flex justify-content-between" sec:authorize="isAuthenticated()" th:action="@{/logout}" method="post">
+			<span class="logo-name">mudi</span>
+			<input class="login-logout-name btn btn-outline-light btn-sm" value="Logout" type="submit"/>
+		</form>
+		<form class="logo-container mb-3 p-4 d-flex justify-content-between" sec:authorize="!isAuthenticated()" th:action="@{/login}">
+			<span class="logo-name">mudi</span>
+			<input class="login-logout-name btn btn-outline-light btn-sm" value="Login" type="submit"/>
+		</form>
+	</div>
+	<div class="row" sec:authorize="isAuthenticated()">
+		<ul class="nav ms-3">
+		  <li class="nav-item">
+		  	<a class="nav-link active" th:href="@{/home}">Home</a>
+		  </li>
+		  <li class="nav-item">
+		    <a class="nav-link" href="/usuario/pedidos">Meus Pedidos</a>
+		  </li>
+		</ul>
+	</div>
 </div>
 
-<div th:fragment="titulo(valor)" class="p-5 mb-2 bg-light text-dark rounded-3">
+<div th:fragment="titulo(valor)" class="p-5 mb-2 mt-3 bg-light text-dark rounded-3">
 	<h1 th:text="${valor}"></h1>
 </div>
