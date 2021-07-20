@@ -12,6 +12,8 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.ManyToOne;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
+
 import br.com.alura.mvc.mudi.dto.PedidoDTO;
 import br.com.alura.mvc.mudi.enums.StatusPedido;
 import lombok.Data;
@@ -34,6 +36,7 @@ public class Pedido {
 	@Enumerated(EnumType.STRING)
 	private StatusPedido status;
 	@ManyToOne(fetch = FetchType.LAZY)
+	@JsonBackReference
 	private Usuario usuario;
 
 	public Pedido(PedidoDTO pedidoDTO) {
