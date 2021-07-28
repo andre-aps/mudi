@@ -15,7 +15,7 @@ import br.com.alura.mvc.mudi.repository.PedidoRepository;
 
 @RestController
 @RequestMapping(path = "/api/pedidos")
-public class PedidoRest {
+public class PedidosRest {
 
 	@Autowired
 	PedidoRepository pedidoRepository;

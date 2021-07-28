@@ -24,17 +24,15 @@
 </head>
 
 <div th:fragment="logo">
-	<div class="row">
-		<form class="logo-container mb-3 p-4 d-flex justify-content-between" sec:authorize="isAuthenticated()" th:action="@{/logout}" method="post">
-			<span class="logo-name">mudi</span>
-			<input class="login-logout-name btn btn-outline-light btn-sm" value="Logout" type="submit"/>
-		</form>
-		<form class="logo-container mb-3 p-4 d-flex justify-content-between" sec:authorize="!isAuthenticated()" th:action="@{/login}">
-			<span class="logo-name">mudi</span>
-			<input class="login-logout-name btn btn-outline-light btn-sm" value="Login" type="submit"/>
-		</form>
-	</div>
-	<div class="row" sec:authorize="isAuthenticated()">
+	<form class="logo-container mb-3 p-4 d-flex justify-content-between" sec:authorize="isAuthenticated()" th:action="@{/logout}" method="post">
+		<span class="logo-name">mudi</span>
+		<input class="login-logout-name btn btn-outline-light btn-sm" value="Logout" type="submit"/>
+	</form>
+	<form class="logo-container mb-3 p-4 d-flex justify-content-between" sec:authorize="!isAuthenticated()" th:action="@{/login}">
+		<span class="logo-name">mudi</span>
+		<input class="login-logout-name btn btn-outline-light btn-sm" value="Login" type="submit"/>
+	</form>
+	<div sec:authorize="isAuthenticated()">
 		<ul class="nav ms-3">
 		  <li class="nav-item">
 		  	<a class="nav-link active" th:href="@{/home}">Home</a>
