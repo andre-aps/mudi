@@ -11,6 +11,8 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.ManyToOne;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
+
 import br.com.alura.mvc.mudi.dto.OfertaDTO;
 import lombok.Data;
 import lombok.NoArgsConstructor;
@@ -27,6 +29,7 @@ public class Oferta {
 	private LocalDate dataEntrega;
 	private String comentario;
 	@ManyToOne(fetch = FetchType.LAZY)
+	@JsonBackReference
 	private Pedido pedido;
 	
 	public Oferta(OfertaDTO ofertaDTO) {
