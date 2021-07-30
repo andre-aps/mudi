@@ -2,6 +2,8 @@ package br.com.alura.mvc.mudi.api;
 
 import java.util.Optional;
 
+import javax.validation.Valid;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
@@ -21,7 +23,7 @@ public class OfertasRest {
 	PedidoRepository pedidoRepository;
 	
 	@PostMapping
-	public Oferta criaOferta(@RequestBody OfertaDTO ofertaDTO) {
+	public Oferta criaOferta(@Valid @RequestBody OfertaDTO ofertaDTO) {
 		Optional<Pedido> pedidoEncontrado = pedidoRepository.findById(ofertaDTO.getPedidoId());
 		
 		if(!pedidoEncontrado.isPresent())
